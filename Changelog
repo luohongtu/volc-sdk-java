@@ -1,6 +1,9 @@
 Change log
 
 2022-12-05 Bumped to version v1.0.72
+- added pdf/word ocr sdk
+
+2022-12-05 Bumped to version v1.0.72
 - Updated apis for imagex/security
 - Updated models for risk
 
