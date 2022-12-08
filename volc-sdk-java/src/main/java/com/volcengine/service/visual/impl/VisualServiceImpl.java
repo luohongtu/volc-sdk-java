@@ -14,8 +14,10 @@ import com.volcengine.service.visual.model.response.*;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class VisualServiceImpl extends BaseServiceImpl implements IVisualService {
 
@@ -202,6 +204,15 @@ public class VisualServiceImpl extends BaseServiceImpl implements IVisualService
     }
 
     @Override
+    public OCRNormalPDFResponse ocrNormalPDF(OCRNormalPDFRequest request) throws Exception {
+        RawResponse response = post(Const.OCRPdf, null, convertNameValuePair(request));
+        if (response.getCode() != SdkError.SUCCESS.getNumber()) {
+            throw response.getException();
+        }
+        return JSON.parseObject(new String(response.getData(), StandardCharsets.UTF_8), OCRNormalPDFResponse.class);
+    }
+
+    @Override
     public OCRBankCardV1Response bankCardV1(OCRBankCardRequest request) throws Exception {
         RawResponse response = post(Const.BankCard, null, convertNameValuePair(request));
         if (response.getCode() != SdkError.SUCCESS.getNumber()) {
@@ -268,9 +279,8 @@ public class VisualServiceImpl extends BaseServiceImpl implements IVisualService
             throws IllegalArgumentException, IllegalAccessException {
         JSONObject jsonObject = (JSONObject) JSON.toJSON(obj);
         List<NameValuePair> list = new ArrayList<NameValuePair>();
-        for (String key : jsonObject.keySet()) {
-            NameValuePair nameValuePair = new BasicNameValuePair(key, jsonObject.get(key).toString());
-            list.add(nameValuePair);
+        for (Map.Entry<String, Object> entry : jsonObject.entrySet()) {
+            list.add(new BasicNameValuePair(entry.getKey(), null == entry.getValue() ? null : entry.getValue().toString()));
         }
         return list;
     }

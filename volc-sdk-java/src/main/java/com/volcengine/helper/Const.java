@@ -415,6 +415,7 @@ public class Const {
     public static final String EnhancePhoto = "EnhancePhoto";
     public static final String ConvertPhoto = "ConvertPhoto";
     public static final String OCRNormal = "OCRNormal";
+    public static final String OCRPdf = "OCRPdf";
     public static final String BankCard = "BankCard";
     public static final String IDCard = "IDCard";
     public static final String DrivingLicense = "DrivingLicense";

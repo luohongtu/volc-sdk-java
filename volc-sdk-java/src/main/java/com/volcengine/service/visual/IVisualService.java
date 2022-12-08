@@ -150,6 +150,15 @@ public interface IVisualService extends IBaseService {
      */
     OCRNormalResponse ocrNormal(OCRNormalRequest request) throws Exception;
 
+
+    /**
+     * 通用pdf/word文字识别
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    OCRNormalPDFResponse ocrNormalPDF(OCRNormalPDFRequest request) throws Exception;
+
     /**
      * 银行卡V1
      * @param request

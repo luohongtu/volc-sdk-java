@@ -306,6 +306,20 @@ public class VisualConfig {
                     }
                 }
             ));
+            put(Const.OCRPdf, new ApiInfo(
+                    new HashMap<String, Object>() {
+                        {
+                            put(Const.Method, "POST");
+                            put(Const.Path, "/");
+                            put(Const.Query, new ArrayList<NameValuePair>() {
+                                {
+                                    add(new BasicNameValuePair("Action", Const.OCRPdf));
+                                    add(new BasicNameValuePair("Version", "2021-08-23"));
+                                }
+                            });
+                        }
+                    }
+            ));
             put(Const.BankCard, new ApiInfo(
                 new HashMap<String, Object>() {
                     {
